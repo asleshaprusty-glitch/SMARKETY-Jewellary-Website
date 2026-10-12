@@ -1,0 +1,114 @@
+/* Shared responsive tweaks for Smarkety pages */
+/* Global box-sizing and image behavior */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; width: 100%; }
+img, .image { max-width: 100%; height: auto; display: block; }
+body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; word-wrap:break-word; overflow-x:hidden; }
+
+/* Site container */
+.container { max-width:1200px; margin:0 auto; padding:0 20px; }
+
+/* Fluid typography helpers */
+:root { --base-font: 16px; }
+html { font-size: 100%; }
+@media (max-width:1200px){ html { font-size: 95%; } }
+@media (max-width:900px){ html { font-size: 93%; } }
+@media (max-width:480px){ html { font-size: 90%; } }
+
+/* Grids */
+.prod-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:18px; grid-auto-rows: 1fr; }
+.col-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap:12px; }
+.ft-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap:16px; }
+.hero, .promo-row { display: grid; grid-template-columns: 1fr 1fr; gap:18px; }
+
+/* Product card adjustments */
+.pcard { display:flex; flex-direction:column; background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 1px 6px rgba(0,0,0,0.04); }
+.pimg { position:relative; }
+.pimg img { width:100%; height:auto; display:block; }
+.pbadge { position:absolute; top:10px; left:10px; background:var(--rose); color:#fff; border-radius:8px; padding:3px 9px; font-size:10px; font-weight:800; letter-spacing:0.3px; }
+.pwish { position:absolute; top:10px; right:10px; background:#fff; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; font-size:15px; border:none; cursor:pointer; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
+.pwish img { width:20px; height:20px; filter:grayscale(100%) brightness(120%); transition:filter .18s ease, transform .12s ease; }
+.pwish.on { background: var(--rose-pale); }
+.pwish.on img { filter:none; transform:scale(1.05); }
+
+/* Ensure interactive elements remain tappable on mobile */
+button, .btn { min-height:36px; padding:8px 12px; border-radius:6px; }
+.padd { width:100%; text-align:center; }
+
+/* Panels, sidebar, cart, wishlist */
+.cart-pan, .wish-pan {
+  width: min(96vw, 420px) !important;
+  max-width: 95vw !important;
+  right: -100vw !important;
+}
+.cart-pan.open, .wish-pan.open {
+  right: 0 !important;
+}
+.cart-ov { position: fixed; inset: 0; }
+.sidebar { width: auto; max-width: 100%; }
+
+/* Accessibility and spacing helpers */
+.hint { font-size:0.9rem; color:var(--muted); }
+.try-btn{ padding:7px 12px; }
+.htag{ font-size:10px; }
+
+/* Breakpoints */
+@media (max-width:1200px){
+  .ft-grid{ grid-template-columns: repeat(3,1fr); }
+}
+
+@media (max-width:900px){
+  .nav-inner{ max-width:100%; padding:0 12px; }
+  .search-wrap{ max-width:240px; }
+  .hero{ grid-template-columns:1fr !important; margin:12px auto; }
+  .hero-main{ padding:20px; min-height:140px; }
+  .hero-jewel{ font-size:48px; right:12px; }
+  .promo-row{ grid-template-columns:1fr; }
+  .strip-inner, .catbar-inner, .sec-hd{ padding:0 12px; }
+  .ft-grid{ grid-template-columns:1fr 1fr; }
+  .prod-grid{ grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap:12px; }
+  .col-grid{ grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  .mini-hero{ padding:16px; }
+  .sidebar{ position:relative; width:100%; height:auto; padding:18px; }
+  .cart-pan, .wish-pan {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    right: -100vw !important;
+  }
+  .cart-pan.open, .wish-pan.open {
+    right: 0 !important;
+  }
+  .wish-img { width: 60px !important; height: 60px !important; }
+}
+
+@media (max-width:768px){
+  nav .nav-right { display:flex; gap:8px; }
+  .ft-grid{ grid-template-columns:1fr 1fr; }
+  .prod-grid{ gap:12px; }
+}
+
+@media (max-width:480px){
+  .logo{ font-size:20px; }
+  .nav-tagline{ display:none; }
+  .search-wrap{ display:none; }
+  .nav-ic{ font-size:11px; padding:4px; }
+  .hero-main h1{ font-size:20px; }
+  .pcard{ border-radius:12px; }
+  .pname{ font-size:12px; }
+  .pprice{ font-size:15px; }
+  .ft-grid{ grid-template-columns:1fr; }
+  .cart-pan{ width:100%; }
+  .sidebar{ position:relative; width:100%; height:auto; padding:12px; }
+  .pwish { width:34px; height:34px; top:8px; right:8px; }
+}
+
+/* Utility: make tables and images scale in content areas */
+.content img, .wish-img img { max-width:100%; height:auto; display:block; }
+.content table { width:100%; overflow:auto; }
+
+/* Small screens - reduce gaps and font sizes slightly */
+@media (max-width:360px){
+  :root { --base-font:14px; }
+  .pname { font-size:11px; }
+  .pprice { font-size:14px; }
+}

@@ -1,0 +1,2562 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="responsive.css" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800;900&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --rose: #c2185b;
+        --rose-light: #e91e8c;
+        --rose-pale: #fff0f6;
+        --rose-deep: #880e4f;
+        --gold: #b8860b;
+        --gold-light: #f5c842;
+        --gold-pale: #fffbf0;
+        --cream: #fbf4ef;
+        --white: #fff;
+        --text: #2d1b1e;
+        --muted: #8b6b72;
+        --border: #f0dde5;
+      }
+      body {
+        font-family: "Nunito", sans-serif;
+        background: var(--cream);
+        color: var(--text);
+        overflow-x: hidden;
+        padding-left: auto;
+      }
+
+      /* ===== LUXURY CREAM SIDEBAR ===== */
+
+      .sidebar {
+        font-family: "Cormorant Garamond", serif;
+        width: 280px;
+        height: 59vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        padding: 30px 25px;
+
+        backdrop-filter: blur(18px);
+
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        overflow: hidden;
+
+        box-shadow: 8px 0 30px rgba(180, 140, 90, 0.12);
+      }
+
+      /* Glow Animation */
+      @keyframes glowMove {
+        from {
+          transform: translateX(0) translateY(0);
+        }
+        to {
+          transform: translateX(30px) translateY(40px);
+        }
+      }
+
+      @keyframes glowMove2 {
+        from {
+          transform: translateX(0) translateY(0);
+        }
+        to {
+          transform: translateX(-20px) translateY(-25px);
+        }
+      }
+
+      /* Title */
+      .sidebar h2 {
+        position: relative;
+        z-index: 2;
+
+        font-size: 32px;
+        font-weight: 700;
+
+        color: var(--rose-deep);
+        letter-spacing: 1px;
+      }
+
+      /* Description */
+      .sidebar p {
+        position: relative;
+        z-index: 2;
+
+        color: var(--rose-light);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      /* Label */
+      .sidebar label {
+        position: relative;
+        z-index: 2;
+
+        font-size: 15px;
+        color: var(--rose-deep);
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      /* Select Box */
+      .select-box {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Stylish Dropdown */
+      .flash-hd select {
+        width: 15%;
+        padding: 10px 15px;
+        border-radius: 16px;
+        border: 1px solid var(--rose-deep);
+        background: var(--rose-deep);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 500;
+        outline: none;
+        cursor: pointer;
+        transition: 0.35s ease;
+        box-shadow:
+          inset 0 2px 5px rgba(255, 255, 255, 0.6),
+          0 5px 12px rgba(180, 140, 90, 0.08);
+      }
+
+      /* Hover */
+      .sidebar select:hover {
+        transform: translateY(-2px);
+        background: var(--rose);
+        color: white;
+        box-shadow: 0 8px 25px var(--rose-light);
+      }
+
+      /* Focus */
+      .flash-hd select:focus {
+        border-color: #c89b6d;
+
+        box-shadow:
+          0 0 0 4px rgba(200, 155, 109, 0.15),
+          0 10px 25px rgba(180, 140, 90, 0.18);
+      }
+
+      /* Dropdown Options */
+      .flash-hd option {
+        background: var(--rose-deep);
+        color: #fff;
+        border-radius: 16px;
+      }
+
+      /* Cream Button */
+      .sort-btn {
+        position: relative;
+        z-index: 2;
+
+        margin-top: 10px;
+        padding: 15px;
+
+        border: none;
+        border-radius: 16px;
+
+        background: linear-gradient(135deg, #d6aa78, #b8865b);
+
+        color: white;
+
+        font-size: 15px;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: 0.35s ease;
+
+        box-shadow: 0 10px 20px rgba(184, 134, 91, 0.22);
+      }
+
+      /* Button Hover */
+      .sort-btn:hover {
+        transform: translateY(-3px) scale(1.02);
+
+        box-shadow: 0 14px 28px rgba(184, 134, 91, 0.3);
+      }
+
+      /* Click */
+      .sort-btn:active {
+        transform: scale(0.97);
+      }
+
+      /* Floating Cream Particles */
+      .floating {
+        position: absolute;
+
+        border-radius: 50%;
+
+        background: rgba(214, 170, 120, 0.18);
+
+        animation: float 7s infinite linear;
+      }
+
+      .f1 {
+        width: 14px;
+        height: 14px;
+        top: 20%;
+        left: 72%;
+      }
+
+      .f2 {
+        width: 10px;
+        height: 10px;
+        top: 58%;
+        left: 28%;
+        animation-duration: 9s;
+      }
+
+      .f3 {
+        width: 16px;
+        height: 16px;
+        top: 82%;
+        left: 78%;
+        animation-duration: 8s;
+      }
+
+      /* Floating Animation */
+      @keyframes float {
+        from {
+          transform: translateY(0px);
+        }
+
+        to {
+          transform: translateY(-45px);
+        }
+      }
+
+      nav {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 0 20px;
+      }
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        height: 62px;
+      }
+      .logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--rose-deep);
+        letter-spacing: 2px;
+        flex-shrink: 0;
+        line-height: 1;
+      }
+      .logo span {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .nav-tagline {
+        font-size: 11px;
+        color: var(--muted);
+        font-style: italic;
+        border-left: 1px solid var(--border);
+        padding-left: 12px;
+        white-space: nowrap;
+      }
+      .search-wrap {
+        flex: 1;
+        max-width: 420px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .search-wrap input {
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: 30px;
+        padding: 9px 18px 9px 40px;
+        font-family: "Nunito", sans-serif;
+        font-size: 13px;
+        color: var(--text);
+        background: #fff5f9;
+        outline: none;
+      }
+      .search-wrap input:focus {
+        border-color: var(--rose-light);
+      }
+      .search-ic {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-left: auto;
+      }
+      .nav-ic {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1px;
+        font-size: 10px;
+        color: var(--muted);
+        font-family: "Nunito", sans-serif;
+        font-weight: 700;
+        padding: 4px 6px;
+      }
+      .nav-ic:hover {
+        color: var(--rose);
+      }
+      .nav-ic .i {
+        font-size: 18px;
+      }
+      .cart-rel {
+        position: relative;
+      }
+      .cbadge {
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        background: var(--rose);
+        color: #fff;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        font-size: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+      }
+      .try-btn {
+        background: var(--rose-deep);
+        color: #fff;
+        border: none;
+        border-radius: 22px;
+        padding: 8px 18px;
+        font-family: "Nunito", sans-serif;
+        font-weight: 800;
+        font-size: 12px;
+        cursor: pointer;
+        white-space: nowrap;
+        letter-spacing: 0.3px;
+      }
+
+      .catbar {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .catbar::-webkit-scrollbar {
+        display: none;
+      }
+      .catbar-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        gap: 40px;
+        justify-content: center;
+      }
+      .citem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 10px 14px;
+        cursor: pointer;
+        flex-shrink: 0;
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s;
+      }
+      .cart-body .citem {
+        flex-direction: row;
+        align-items: center;
+      }
+      .citem:hover {
+        border-color: var(--rose-light);
+      }
+      .citem.active {
+        border-color: var(--rose);
+      }
+      .citem .ci img {
+        height: 24px;
+        width: 24px;
+      }
+      img {
+        transition: transform 0.2s ease;
+      }
+      .citem .ci img:hover {
+        transform: scale(1.3);
+      }
+      .citem .cn {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .citem.active .cn {
+        color: var(--rose);
+      }
+
+      .hero {
+        max-width: 1200px;
+        margin: 18px auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: 1.8fr 1fr 1fr;
+        gap: 14px;
+      }
+      .hero-main {
+        background: linear-gradient(
+          145deg,
+          #4a0020 0%,
+          #880e4f 45%,
+          #c2185b 100%
+        );
+        border-radius: 22px;
+        padding: 36px 34px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        min-height: 210px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      .hero-main::before {
+        content: "";
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: rgba(245, 200, 66, 0.12);
+      }
+      .hero-main::after {
+        content: "";
+        position: absolute;
+        bottom: -40px;
+        left: 40px;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .hero-jewel {
+        position: absolute;
+        top: 20px;
+        right: 28px;
+        font-size: 88px;
+        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+      }
+      .htag {
+        background: rgba(245, 200, 66, 0.25);
+        border: 1px solid rgba(245, 200, 66, 0.5);
+        color: var(--gold-light);
+        border-radius: 20px;
+        padding: 3px 12px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        display: inline-block;
+        margin-bottom: 8px;
+      }
+      .hero-main h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.25;
+        margin-bottom: 6px;
+      }
+      .hero-main p {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-bottom: 14px;
+      }
+      .hcta {
+        background: var(--gold-light);
+        color: #4a0020;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 22px;
+        font-weight: 900;
+        font-size: 13px;
+        cursor: pointer;
+        font-family: "Nunito", sans-serif;
+        letter-spacing: 0.3px;
+      }
+      .hero-side {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .mini-hero {
+        border-radius: 18px;
+        padding: 22px 18px;
+        color: #fff;
+        flex: 1;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      .mh1 {
+        background: linear-gradient(135deg, #6a0572, #c2185b);
+      }
+      .mh2 {
+        background: linear-gradient(135deg, #1a237e, #5c6bc0);
+      }
+      .mini-hero h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+      .mini-hero p {
+        font-size: 11px;
+        opacity: 0.8;
+      }
+      .mini-hero .me {
+        position: absolute;
+        top: 12px;
+        right: 14px;
+        font-size: 36px;
+        opacity: 0.85;
+      }
+
+      .strip {
+        background: var(--rose-deep);
+        padding: 10px 0;
+      }
+      .strip-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        gap: 28px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        align-items: center;
+      }
+      .strip-inner::-webkit-scrollbar {
+        display: none;
+      }
+      .sitem {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        color: #fff;
+      }
+      .sitem .si {
+        font-size: 18px;
+      }
+      .sitem .st {
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .sdiv {
+        width: 1px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        flex-shrink: 0;
+      }
+
+      .section {
+        max-width: 1200px;
+        margin: 26px auto;
+        padding: 0 20px;
+      }
+      .sec-hd {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 18px;
+      }
+      .sec-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .sec-title em {
+        color: var(--rose);
+        font-style: italic;
+      }
+      .see-all {
+        color: var(--rose);
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        background: none;
+        border: none;
+        font-family: "Nunito", sans-serif;
+        letter-spacing: 0.3px;
+      }
+
+      .filters {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        margin-bottom: 18px;
+      }
+      .filters::-webkit-scrollbar {
+        display: none;
+      }
+      .fpill {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 6px 16px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--muted);
+        cursor: pointer;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: all 0.2s;
+        font-family: "Nunito", sans-serif;
+      }
+      .fpill:hover,
+      .fpill.active {
+        background: var(--rose-deep);
+        border-color: var(--rose-deep);
+        color: #fff;
+      }
+
+      .prod-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+        gap: 16px;
+      }
+
+      #seeAllBtn {
+        display: block;
+        margin-left: auto;
+        margin-right: 0; /* optional spacing from right */
+        margin-top: 8px;
+        width: 10% height 35px;
+        background: linear-gradient(
+          135deg,
+          var(--rose-deep),
+          var(--rose-light)
+        );
+        color: #fff;
+        border: none;
+        border-radius: 15px;
+        padding: 9px;
+        font-family: "Nunito", sans-serif;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        letter-spacing: 0.3px;
+      }
+      .hidden-item {
+        display: none;
+      }
+      .pcard {
+        background: var(--white);
+        border-radius: 18px;
+        overflow: hidden;
+        cursor: pointer;
+        transition:
+          transform 0.22s,
+          box-shadow 0.22s;
+        position: relative;
+        border: 1px solid var(--border);
+      }
+      .pcard-link {
+        text-emphasis: none;
+      }
+      .pcard:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 36px rgba(194, 24, 91, 0.12);
+      }
+      .pimg {
+        width: 100%;
+        aspect-ratio: 1;
+        position: relative;
+        overflow: hidden;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .pimg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .pbadge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: var(--rose);
+        color: #fff;
+        border-radius: 8px;
+        padding: 3px 9px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+      }
+      .gold-badge {
+        background: var(--gold);
+      }
+      .pwish {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 42px;
+        height: 42px;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.3s;
+        backdrop-filter: blur(6px);
+      }
+      .heart-icon {
+        width: 22px;
+        height: 22px;
+      }
+
+      .heart-icon path {
+        fill: transparent;
+        stroke: #444;
+        stroke-width: 2;
+        transition: 0.3s ease;
+      }
+
+      .pwish.on .heart-icon path {
+        fill: #ff204e;
+        stroke: #ff204e;
+      }
+      .pwish:hover {
+        transform: scale(1.1);
+      }
+
+      .pwish.on {
+        color: var(--rose);
+        background: rgba(255, 32, 78, 0.15);
+      }
+      .pinfo {
+        padding: 12px 14px 14px;
+      }
+      .pname {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 1px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        line-height: 1.4;
+      }
+      .pbrand {
+        font-size: 11px;
+        color: var(--muted);
+        margin-bottom: 7px;
+        font-style: italic;
+      }
+      .prow {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 4px;
+      }
+      .pprice {
+        font-size: 17px;
+        font-weight: 900;
+        color: var(--text);
+      }
+      .pog {
+        font-size: 11px;
+        color: var(--muted);
+        text-decoration: line-through;
+      }
+      .pdisc {
+        font-size: 11px;
+        font-weight: 800;
+        color: #1b8a3c;
+      }
+      .prat {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 11px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .pstars {
+        color: #d4a017;
+        font-size: 11px;
+      }
+      .padd {
+        width: 100%;
+        background: linear-gradient(
+          135deg,
+          var(--rose-deep),
+          var(--rose-light)
+        );
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 9px;
+        font-family: "Nunito", sans-serif;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        letter-spacing: 0.3px;
+      }
+      .padd:hover {
+        opacity: 0.87;
+      }
+      .padd.done {
+        background: linear-gradient(135deg, #1b8a3c, #22c55e);
+      }
+
+      .col-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+      }
+      .col-card {
+        background: var(--white);
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: pointer;
+        border: 1px solid var(--border);
+        transition: all 0.2s;
+      }
+      .col-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 22px rgba(194, 24, 91, 0.1);
+      }
+      .col-img {
+        width: 100%;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 42px;
+      }
+      .cg1 {
+        background: linear-gradient(145deg, #fff0f6, #ffe4f0);
+      }
+      .cg2 {
+        background: linear-gradient(145deg, #fff9f0, #fff3e0);
+      }
+      .cg3 {
+        background: linear-gradient(145deg, #f3e5f5, #ede7f6);
+      }
+      .cg4 {
+        background: linear-gradient(145deg, #e8f5e9, #f1f8e9);
+      }
+      .cg5 {
+        background: linear-gradient(145deg, #e3f2fd, #ede7f6);
+      }
+      .cg6 {
+        background: linear-gradient(145deg, #fff8e1, #fffde7);
+      }
+      .col-info {
+        padding: 10px 12px;
+      }
+      .col-name {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--text);
+      }
+      .col-sub {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      .flash-hd {
+        background: linear-gradient(
+          135deg,
+          var(--rose-deep),
+          var(--rose-light)
+        );
+        border-radius: 16px;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        height: 4rem;
+      }
+      .flash-t {
+        color: #fff;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 22px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .timer {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+      .tbox {
+        background: rgba(0, 0, 0, 0.28);
+        color: #fff;
+        border-radius: 8px;
+        padding: 4px 10px;
+        font-size: 16px;
+        font-weight: 900;
+        min-width: 38px;
+        text-align: center;
+      }
+      .tsep {
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 900;
+        font-size: 18px;
+      }
+
+      .promo-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 24px;
+      }
+      .promo-card {
+        border-radius: 18px;
+        padding: 24px 20px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .pc1 {
+        background: linear-gradient(135deg, #4a0020, #c2185b);
+      }
+      .pc2 {
+        background: linear-gradient(135deg, #1b1b3a, #6a0572);
+      }
+      .pc3 {
+        background: linear-gradient(135deg, #2c1810, #b8860b);
+      }
+      .promo-card h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 19px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .promo-card p {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-bottom: 12px;
+      }
+      .promo-card .pe {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 48px;
+        opacity: 0.7;
+      }
+      .promo-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        color: #fff;
+        border-radius: 16px;
+        padding: 6px 16px;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: "Nunito", sans-serif;
+      }
+
+      footer {
+        background: #2d1b1e;
+        color: #fff;
+        padding: 36px 20px 20px;
+        margin-top: 40px;
+      }
+      .ft-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .ft-logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 30px;
+        font-weight: 700;
+        color: #f5c842;
+        letter-spacing: 2px;
+        margin-bottom: 6px;
+      }
+      .ft-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 28px;
+        margin-bottom: 24px;
+      }
+      .ft-tag {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.7;
+        margin-bottom: 14px;
+        font-style: italic;
+      }
+      .apps {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .app-b {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        padding: 8px 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+      }
+      .app-b .ai {
+        font-size: 18px;
+      }
+      .app-b .at {
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .app-b .ab {
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+        display: block;
+      }
+      .fc h4 {
+        font-size: 10px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+      }
+      .fc a {
+        display: block;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 8px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .fc a:hover {
+        color: #f5c842;
+      }
+      .ft-bot {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .ft-copy {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .socials {
+        display: flex;
+        gap: 8px;
+      }
+      .sb {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        border: none;
+        color: #fff;
+        font-size: 13px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sb:hover {
+        background: var(--rose);
+      }
+
+      .cart-ov {
+        position: fixed;
+        inset: 0;
+        background: rgba(45, 27, 30, 0.45);
+        z-index: 200;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+      .cart-ov.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .cart-pan {
+        position: fixed;
+        right: -400px;
+        top: 0;
+        bottom: 0;
+        width: 370px;
+        background: var(--white);
+        z-index: 201;
+        transition: right 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid var(--border);
+      }
+      .cart-pan.open {
+        right: 0;
+      }
+      /* ===== WISHLIST PANEL ===== */
+
+      .wish-pan {
+        position: fixed;
+        right: -400px;
+        top: 0;
+        bottom: 0;
+        width: 370px;
+
+        background: linear-gradient(145deg, #fff, #fff7fb);
+
+        z-index: 205;
+
+        transition: right 0.35s ease;
+
+        display: flex;
+        flex-direction: column;
+
+        border-left: 1px solid var(--border);
+
+        box-shadow: -8px 0 30px rgba(194, 24, 91, 0.12);
+      }
+
+      .wish-pan.open {
+        right: 0;
+      }
+
+      .wish-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px;
+      }
+
+      .wish-item {
+        display: flex;
+        gap: 12px;
+
+        padding: 14px 0;
+
+        border-bottom: 1px solid rgba(194, 24, 91, 0.08);
+      }
+
+      .wish-img {
+        width: 70px;
+        height: 70px;
+
+        border-radius: 14px;
+
+        overflow: hidden;
+
+        flex-shrink: 0;
+      }
+
+      .wish-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .wish-info {
+        flex: 1;
+      }
+
+      .wish-name {
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 3px;
+      }
+
+      .wish-brand {
+        font-size: 11px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .wish-price {
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--rose-deep);
+      }
+
+      .wish-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .wish-btn {
+        flex: 1;
+
+        border: none;
+
+        border-radius: 10px;
+
+        padding: 8px;
+
+        cursor: pointer;
+
+        font-size: 11px;
+        font-weight: 800;
+
+        font-family: "Nunito", sans-serif;
+      }
+
+      .wish-cart {
+        background: linear-gradient(
+          135deg,
+          var(--rose-deep),
+          var(--rose-light)
+        );
+
+        color: white;
+      }
+
+      .wish-remove {
+        background: #fff0f6;
+        color: var(--rose-deep);
+      }
+
+      .wish-remove:hover {
+        background: #ffd9ea;
+      }
+      .cart-h {
+        padding: 20px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .cart-h h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 22px;
+        font-weight: 700;
+      }
+      .cls {
+        background: none;
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        color: var(--muted);
+      }
+      .cart-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px;
+      }
+      .ce {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--muted);
+      }
+      .ce .cei {
+        font-size: 56px;
+        margin-bottom: 10px;
+      }
+      .citem {
+        display: flex;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--rose-pale);
+      }
+      .cimg {
+        width: 90px;
+        height: 90px;
+        background: var(--rose-pale);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        flex-shrink: 0;
+      }
+      .cimg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+      .cif {
+        flex: 1;
+      }
+      .cin {
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+      .cip {
+        font-size: 15px;
+        font-weight: 900;
+        color: var(--rose-deep);
+      }
+      .ciq {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 6px;
+      }
+      .qb {
+        height: 24px;
+        border-radius: 50%;
+        border: 1.5px solid var(--border);
+        background: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--rose-deep);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Nunito", sans-serif;
+      }
+      .qn {
+        font-size: 14px;
+        font-weight: 800;
+      }
+      .cir {
+        background: none;
+        border: none;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 15px;
+      }
+      .cart-ft {
+        padding: 16px;
+        border-top: 1px solid var(--border);
+      }
+      .ctot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+      .ctot span {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--muted);
+      }
+      .ctot strong {
+        font-size: 22px;
+        font-weight: 900;
+        color: var(--rose-deep);
+      }
+      .chk {
+        width: 100%;
+        background: linear-gradient(
+          135deg,
+          var(--rose-deep),
+          var(--rose-light)
+        );
+        color: #fff;
+        border: none;
+        border-radius: 14px;
+        padding: 14px;
+        font-family: "Nunito", sans-serif;
+        font-weight: 900;
+        font-size: 15px;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+      }
+
+      .image {
+        height: 100%;
+        width: 100%;
+      }
+
+      .img {
+        display: none;
+      }
+
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%) translateY(80px);
+        background: #2d1b1e;
+        color: #fff;
+        padding: 12px 26px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 13px;
+        z-index: 300;
+        transition: transform 0.3s;
+        white-space: nowrap;
+        pointer-events: none;
+        border: 1px solid rgba(245, 200, 66, 0.3);
+      }
+      .toast.show {
+        transform: translateX(-50%) translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <div class="logo">SMARKETY <span>✦</span></div>
+        <div class="nav-tagline">Women's Jewellery Boutique</div>
+        <div class="search-wrap">
+          <span class="search-ic">🔍</span>
+          <input
+            type="text"
+            placeholder="Search earrings, necklaces, bangles…"
+            id="srch"
+          />
+        </div>
+        <div class="nav-right">
+          <button onclick="window.location.href = 'all.html'" class="nav-ic">
+            <span class="i">🏠</span>Home
+          </button>
+          <button class="nav-ic cart-rel" onclick="toggleWishPanel()">
+            <span class="i">❤️</span>Wishlist
+            <span class="cbadge" id="wcount">0</span>
+          </button>
+          <button class="nav-ic cart-rel" onclick="toggleCart()">
+            <span class="i">🛒</span>Cart
+            <span class="cbadge" id="cc">0</span>
+          </button>
+          <button class="nav-ic"><span class="i">👤</span>Account</button>
+          <button class="try-btn">Sell Jewellery</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="catbar">
+      <div class="catbar-inner">
+        <div class="citem" onclick="setcat('all', this)">
+          <div class="ci">
+            <img
+              src="/images/luxury.png"
+              alt="Earrings"
+              style="
+                height: 24px;
+                width: 24px;
+                filter: drop-shadow(0 2px 6px rgba(194, 24, 91, 0.3));
+              "
+            />
+          </div>
+          <div class="cn">All</div>
+        </div>
+        <div class="citem" onclick="setcat('earrings', this)">
+          <div class="ci">
+            <img
+              src="/images/earrings.png"
+              alt="Earrings"
+              style="
+                height: 24px;
+                width: 24px;
+                filter: drop-shadow(0 2px 6px rgba(194, 24, 91, 0.3));
+              "
+            />
+          </div>
+          <div class="cn">Earrings</div>
+        </div>
+        <div class="citem" onclick="setcat('necklace', this)">
+          <div class="ci">
+            <img
+              src="/images/necklace.png"
+              alt="Necklaces"
+              style="
+                height: 24px;
+                width: 24px;
+                filter: drop-shadow(0 2px 6px rgba(194, 24, 91, 0.3));
+              "
+            />
+          </div>
+          <div class="cn">Necklaces</div>
+        </div>
+        <div class="citem" onclick="setcat('bangles', this)">
+          <div class="ci">
+            <img
+              src="/images/bangle.png"
+              alt="Bangles"
+              style="
+                height: 24px;
+                width: 24px;
+                filter: drop-shadow(0 2px 6px rgba(194, 24, 91, 0.3));
+              "
+            />
+          </div>
+          <div class="cn">Bangles</div>
+        </div>
+        <div class="citem" onclick="setcat('rings', this)">
+          <div class="ci">
+            <img
+              src="/images/diamond-ring.png"
+              alt="Rings"
+              style="
+                height: 24px;
+                width: 24px;
+                filter: drop-shadow(0 2px 6px rgba(194, 24, 91, 0.3));
+              "
+            />
+          </div>
+          <div class="cn">Rings</div>
+        </div>
+        <div class="citem" onclick="setcat('maang', this)">
+          <div class="ci">
+            <img
+              src="/images/maang-tikka1.png"
+              alt="Maang Tikka"
+              style="
+                height: 24px;
+                width: 24px;
+                filter: drop-shadow(0 2px 6px rgba(194, 24, 91, 0.3));
+              "
+            />
+          </div>
+          <div class="cn">Maang Tikka</div>
+        </div>
+        <div class="citem" onclick="setcat('anklet', this)">
+          <div class="ci">
+            <img
+              src="/images/anklet.png"
+              alt="Anklets"
+              style="
+                height: 25px;
+                width: 25px;
+                filter: drop-shadow(0 2px 6px rgba(194, 24, 91, 0.3));
+              "
+            />
+          </div>
+          <div class="cn">Anklets</div>
+        </div>
+        <div class="citem" onclick="setcat('bracelet', this)">
+          <div class="ci">
+            <img
+              src="/images/bracelet.png"
+              alt="Bracelets"
+              style="
+                height: 24px;
+                width: 24px;
+                filter: drop-shadow(0 2px 6px rgba(194, 24, 91, 0.3));
+              "
+            />
+          </div>
+          <div class="cn">Bracelets</div>
+        </div>
+        <div class="citem" onclick="setcat('sets', this)">
+          <div class="ci">
+            <img
+              src="/images/jewellery.png"
+              alt="Earrings"
+              style="
+                height: 24px;
+                width: 24px;
+                filter: drop-shadow(0 2px 6px rgba(194, 24, 91, 0.3));
+              "
+            />
+          </div>
+          <div class="cn">Bridal Sets</div>
+        </div>
+        <div class="citem" onclick="setcat('kundan', this)">
+          <div class="ci">
+            <img
+              src="/images/kundan.png"
+              alt="Kundan"
+              style="
+                height: 24px;
+                width: 24px;
+                filter: drop-shadow(0 2px 6px rgba(194, 24, 91, 0.3));
+              "
+            />
+          </div>
+          <div class="cn">Kundan</div>
+        </div>
+        <div class="citem" onclick="setcat('oxidised', this)">
+          <div class="ci">
+            <img
+              src="/images/oxidised.png"
+              alt="Oxidised"
+              style="
+                height: 24px;
+                width: 24px;
+                filter: drop-shadow(0 2px 6px rgba(194, 24, 91, 0.3));
+              "
+            />
+          </div>
+          <div class="cn">Oxidised</div>
+        </div>
+        <div class="citem active" onclick="setcat('cloths', this)">
+          <div class="ci">
+            <img
+              src="/images/cloths.png"
+              alt="Cloths"
+              style="
+                height: 24px;
+                width: 24px;
+                filter: drop-shadow(0 2px 6px rgba(194, 24, 91, 0.3));
+              "
+            />
+          </div>
+          <div class="cn">cloths</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-ov" id="cov" onclick="toggleCart()"></div>
+    <div class="cart-pan" id="cpan">
+      <div class="cart-h">
+        <h2>🛒 My Cart</h2>
+        <button class="cls" onclick="toggleCart()">✕</button>
+      </div>
+      <div class="cart-body" id="cbody">
+        <div class="ce">
+          <div class="cei">💎</div>
+          <p style="font-weight: 700">Your cart is empty</p>
+          <p style="font-size: 12px; margin-top: 4px; color: #8b6b72">
+            Add some beautiful jewellery!
+          </p>
+        </div>
+      </div>
+      <div class="cart-ft" id="cft" style="display: none">
+        <div class="ctot">
+          <span>Total Amount</span><strong id="ctotal">₹0</strong>
+        </div>
+        <button class="chk">Proceed to Checkout →</button>
+      </div>
+    </div>
+    <div class="toast" id="toast"></div>
+
+    <!-- Wishlist Overlay -->
+    <div class="cart-ov" id="wov" onclick="toggleWishPanel()"></div>
+
+    <!-- Wishlist Panel -->
+    <div class="wish-pan" id="wpan">
+      <div class="cart-h">
+        <h2>❤️ My Wishlist</h2>
+
+        <button class="cls" onclick="toggleWishPanel()">✕</button>
+      </div>
+
+      <div class="wish-body" id="wishBody">
+        <div class="ce">
+          <div class="cei">💎</div>
+
+          <p style="font-weight: 700">Your wishlist is empty</p>
+
+          <p style="font-size: 12px; margin-top: 4px; color: #8b6b72">
+            Save your favourite jewellery ❤️
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="flash-hd">
+        <div class="flash-t">🔥Trending Outfit Hub</div>
+        <select id="sortOption">
+          <option value="" disabled selected hidden>Sort Products</option>
+          <option value="highToLow">Price(High to Low)</option>
+          <option value="lowToHigh">Price(Low to High)</option>
+          <option value="discount">Highest Discount</option>
+          <option value="rating">Highest Rating</option>
+        </select>
+      </div>
+      <div class="prod-grid" id="prodGrid"></div>
+      <button type="button" id="seeAllBtn">See All</button>
+    </div>
+    <footer>
+      <div class="ft-inner">
+        <div class="ft-grid">
+          <div>
+            <div class="ft-logo">SMARKETY ✦</div>
+            <div class="ft-tag">
+              India's finest women's jewellery destination. Connecting artisan
+              workshops to your doorstep since 2021.
+            </div>
+            <div class="apps">
+              <div class="app-b">
+                <span class="ai">📱</span>
+                <div>
+                  <span class="at">Download on</span
+                  ><span class="ab">App Store</span>
+                </div>
+              </div>
+              <div class="app-b">
+                <span class="ai">🤖</span>
+                <div>
+                  <span class="at">Get it on</span
+                  ><span class="ab">Google Play</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="fc">
+            <h4>Customer</h4>
+            <a>My Orders</a><a>Track Order</a><a>Returns & Exchange</a
+            ><a>Size Guide</a><a>Help Center</a>
+          </div>
+          <div class="fc">
+            <h4>Jewellery</h4>
+            <a>Gold-Plated</a><a>Silver</a><a>Kundan</a><a>Oxidised</a
+            ><a>Bridal Sets</a>
+          </div>
+          <div class="fc">
+            <h4>Company</h4>
+            <a>About Us</a><a>Sell With Us</a><a>Careers</a><a>Privacy Policy</a
+            ><a>Terms of Use</a>
+          </div>
+        </div>
+        <div class="ft-bot">
+          <div class="ft-copy">
+            © 2025 Smarkety Pvt. Ltd. · Women's Jewellery Boutique
+          </div>
+          <div class="socials">
+            <button class="sb">📘</button><button class="sb">📸</button
+            ><button class="sb">🐦</button><button class="sb">▶️</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const products = [
+        {
+          id: 1,
+          name: "Anarkali Dress",
+          brand: "Rajrani Couture",
+          price: 499,
+          og: 599,
+          image: "💠",
+          cat: "Dresses",
+          type: "cotton",
+          tag: "bestseller",
+          disc: 67,
+          rating: 4.5,
+          reviews: "2.1k",
+          image:
+            "https://suratikart.com/cdn/shop/files/IMG_4082.jpg?v=1758343326",
+        },
+        {
+          id: 2,
+          name: "Banarasi Silk Saree",
+          brand: "Rangriti Vogue",
+          price: 649,
+          og: 1199,
+          image: "📿",
+          cat: "Dresses",
+          type: "silk",
+          tag: "trending",
+          disc: 63,
+          rating: 4.3,
+          reviews: "2.6k",
+          image:
+            "https://media.istockphoto.com/id/1442161414/photo/banarasi-saree-with-beautiful-texture-and-hand-work-on-it.jpg?s=612x612&w=0&k=20&c=EfMg3eZfsdDbJmIp_gXysuM2LJM_fn-Y25y4p_HCCZk=",
+        },
+        {
+          id: 3,
+          name: "Satin Bodycon Dress",
+          brand: "Rosé Élise",
+          price: 379,
+          og: 499,
+          image: "🔮",
+          cat: "Party Wear",
+          type: "Bodycon Dress",
+          tag: "bestseller",
+          disc: 64,
+          rating: 4.6,
+          reviews: "3.2k",
+          image:
+            "https://www.missmosa.in/cdn/shop/files/AACC769A-B881-47EB-AE9D-70C8967C1AC7.jpg?v=1749207221&width=500",
+        },
+        {
+          id: 4,
+          name: "Printed Kurti Set",
+          brand: "Aaranya Styles",
+          price: 299,
+          og: 399,
+          image: "🫧",
+          cat: "Dresses",
+          type: "Kurti & Palazzo",
+          tag: "new",
+          disc: 63,
+          rating: 4.4,
+          reviews: "1.4k",
+          image:
+            "https://wholetex.sgp1.cdn.digitaloceanspaces.com/full/dc-g65-masline-digital-printed-kurti-set-6788.jpg",
+        },
+        {
+          id: 5,
+          name: "Oversized Graphic T-Shirt",
+          brand: "Urban Gleam",
+          price: 899,
+          og: 2499,
+          image: "👑",
+          cat: "Western Fashion",
+          type: "Street Style",
+          tag: "bestseller",
+          disc: 64,
+          rating: 4.7,
+          reviews: "654",
+          image:
+            "https://img.kwcdn.com/product/open/893e96c27a4649f7852ab5d4857860e8-goods.jpeg",
+        },
+        {
+          id: 6,
+          name: "Anarkali Dress",
+          brand: "Rajrani Couture",
+          price: 499,
+          og: 599,
+          image: "💠",
+          cat: "Dresses",
+          type: "cotton",
+          tag: "bestseller",
+          disc: 67,
+          rating: 4.5,
+          reviews: "2.1k",
+          image:
+            "https://suratikart.com/cdn/shop/files/IMG_4082.jpg?v=1758343326",
+        },
+        {
+          id: 7,
+          name: "Banarasi Silk Saree",
+          brand: "Rangriti Vogue",
+          price: 649,
+          og: 1199,
+          image: "📿",
+          cat: "Dresses",
+          type: "silk",
+          tag: "trending",
+          disc: 63,
+          rating: 4.3,
+          reviews: "2.6k",
+          image:
+            "https://media.istockphoto.com/id/1442161414/photo/banarasi-saree-with-beautiful-texture-and-hand-work-on-it.jpg?s=612x612&w=0&k=20&c=EfMg3eZfsdDbJmIp_gXysuM2LJM_fn-Y25y4p_HCCZk=",
+        },
+        {
+          id: 8,
+          name: "Satin Bodycon Dress",
+          brand: "Rosé Élise",
+          price: 379,
+          og: 499,
+          image: "🔮",
+          cat: "Party Wear",
+          type: "Bodycon Dress",
+          tag: "bestseller",
+          disc: 64,
+          rating: 4.6,
+          reviews: "3.2k",
+          image:
+            "https://www.missmosa.in/cdn/shop/files/AACC769A-B881-47EB-AE9D-70C8967C1AC7.jpg?v=1749207221&width=500",
+        },
+        {
+          id: 9,
+          name: "Printed Kurti Set",
+          brand: "Aaranya Styles",
+          price: 299,
+          og: 399,
+          image: "🫧",
+          cat: "Dresses",
+          type: "Kurti & Palazzo",
+          tag: "new",
+          disc: 63,
+          rating: 4.4,
+          reviews: "1.4k",
+          image:
+            "https://wholetex.sgp1.cdn.digitaloceanspaces.com/full/dc-g65-masline-digital-printed-kurti-set-6788.jpg",
+        },
+        {
+          id: 10,
+          name: "Oversized Graphic T-Shirt",
+          brand: "Urban Gleam",
+          price: 899,
+          og: 2499,
+          image: "👑",
+          cat: "Western Fashion",
+          type: "Street Style",
+          tag: "bestseller",
+          disc: 64,
+          rating: 4.7,
+          reviews: "654",
+          image:
+            "https://img.kwcdn.com/product/open/893e96c27a4649f7852ab5d4857860e8-goods.jpeg",
+        },
+        {
+          id: 11,
+          name: "Anarkali Dress",
+          brand: "Rajrani Couture",
+          price: 499,
+          og: 599,
+          image: "💠",
+          cat: "Dresses",
+          type: "cotton",
+          tag: "bestseller",
+          disc: 67,
+          rating: 4.5,
+          reviews: "2.1k",
+          image:
+            "https://suratikart.com/cdn/shop/files/IMG_4082.jpg?v=1758343326",
+        },
+        {
+          id: 12,
+          name: "Banarasi Silk Saree",
+          brand: "Rangriti Vogue",
+          price: 649,
+          og: 1199,
+          image: "📿",
+          cat: "Dresses",
+          type: "silk",
+          tag: "trending",
+          disc: 63,
+          rating: 4.3,
+          reviews: "2.6k",
+          image:
+            "https://media.istockphoto.com/id/1442161414/photo/banarasi-saree-with-beautiful-texture-and-hand-work-on-it.jpg?s=612x612&w=0&k=20&c=EfMg3eZfsdDbJmIp_gXysuM2LJM_fn-Y25y4p_HCCZk=",
+        },
+        {
+          id: 13,
+          name: "Satin Bodycon Dress",
+          brand: "Rosé Élise",
+          price: 379,
+          og: 499,
+          image: "🔮",
+          cat: "Party Wear",
+          type: "Bodycon Dress",
+          tag: "bestseller",
+          disc: 64,
+          rating: 4.6,
+          reviews: "3.2k",
+          image:
+            "https://www.missmosa.in/cdn/shop/files/AACC769A-B881-47EB-AE9D-70C8967C1AC7.jpg?v=1749207221&width=500",
+        },
+        {
+          id: 14,
+          name: "Printed Kurti Set",
+          brand: "Aaranya Styles",
+          price: 299,
+          og: 399,
+          image: "🫧",
+          cat: "Dresses",
+          type: "Kurti & Palazzo",
+          tag: "new",
+          disc: 63,
+          rating: 4.4,
+          reviews: "1.4k",
+          image:
+            "https://wholetex.sgp1.cdn.digitaloceanspaces.com/full/dc-g65-masline-digital-printed-kurti-set-6788.jpg",
+        },
+        {
+          id: 15,
+          name: "Oversized Graphic T-Shirt",
+          brand: "Urban Gleam",
+          price: 899,
+          og: 2499,
+          image: "👑",
+          cat: "Western Fashion",
+          type: "Street Style",
+          tag: "bestseller",
+          disc: 64,
+          rating: 4.7,
+          reviews: "654",
+          image:
+            "https://img.kwcdn.com/product/open/893e96c27a4649f7852ab5d4857860e8-goods.jpeg",
+        },
+        {
+          id: 16,
+          name: "Anarkali Dress",
+          brand: "Rajrani Couture",
+          price: 499,
+          og: 599,
+          image: "💠",
+          cat: "Dresses",
+          type: "cotton",
+          tag: "bestseller",
+          disc: 67,
+          rating: 4.5,
+          reviews: "2.1k",
+          image:
+            "https://suratikart.com/cdn/shop/files/IMG_4082.jpg?v=1758343326",
+        },
+        {
+          id: 17,
+          name: "Banarasi Silk Saree",
+          brand: "Rangriti Vogue",
+          price: 649,
+          og: 1199,
+          image: "📿",
+          cat: "Dresses",
+          type: "silk",
+          tag: "trending",
+          disc: 63,
+          rating: 4.3,
+          reviews: "2.6k",
+          image:
+            "https://media.istockphoto.com/id/1442161414/photo/banarasi-saree-with-beautiful-texture-and-hand-work-on-it.jpg?s=612x612&w=0&k=20&c=EfMg3eZfsdDbJmIp_gXysuM2LJM_fn-Y25y4p_HCCZk=",
+        },
+        {
+          id: 18,
+          name: "Satin Bodycon Dress",
+          brand: "Rosé Élise",
+          price: 379,
+          og: 499,
+          image: "🔮",
+          cat: "Party Wear",
+          type: "Bodycon Dress",
+          tag: "bestseller",
+          disc: 64,
+          rating: 4.6,
+          reviews: "3.2k",
+          image:
+            "https://www.missmosa.in/cdn/shop/files/AACC769A-B881-47EB-AE9D-70C8967C1AC7.jpg?v=1749207221&width=500",
+        },
+        {
+          id: 19,
+          name: "Printed Kurti Set",
+          brand: "Aaranya Styles",
+          price: 299,
+          og: 399,
+          image: "🫧",
+          cat: "Dresses",
+          type: "Kurti & Palazzo",
+          tag: "new",
+          disc: 63,
+          rating: 4.4,
+          reviews: "1.4k",
+          image:
+            "https://wholetex.sgp1.cdn.digitaloceanspaces.com/full/dc-g65-masline-digital-printed-kurti-set-6788.jpg",
+        },
+        {
+          id: 20,
+          name: "Oversized Graphic T-Shirt",
+          brand: "Urban Gleam",
+          price: 899,
+          og: 2499,
+          image: "👑",
+          cat: "Western Fashion",
+          type: "Street Style",
+          tag: "bestseller",
+          disc: 64,
+          rating: 4.7,
+          reviews: "654",
+          image:
+            "https://img.kwcdn.com/product/open/893e96c27a4649f7852ab5d4857860e8-goods.jpeg",
+        },
+        {
+          id: 21,
+          name: "Anarkali Dress",
+          brand: "Rajrani Couture",
+          price: 499,
+          og: 599,
+          image: "💠",
+          cat: "Dresses",
+          type: "cotton",
+          tag: "bestseller",
+          disc: 67,
+          rating: 4.5,
+          reviews: "2.1k",
+          image:
+            "https://suratikart.com/cdn/shop/files/IMG_4082.jpg?v=1758343326",
+        },
+        {
+          id: 22,
+          name: "Banarasi Silk Saree",
+          brand: "Rangriti Vogue",
+          price: 649,
+          og: 1199,
+          image: "📿",
+          cat: "Dresses",
+          type: "silk",
+          tag: "trending",
+          disc: 63,
+          rating: 4.3,
+          reviews: "2.6k",
+          image:
+            "https://media.istockphoto.com/id/1442161414/photo/banarasi-saree-with-beautiful-texture-and-hand-work-on-it.jpg?s=612x612&w=0&k=20&c=EfMg3eZfsdDbJmIp_gXysuM2LJM_fn-Y25y4p_HCCZk=",
+        },
+        {
+          id: 23,
+          name: "Satin Bodycon Dress",
+          brand: "Rosé Élise",
+          price: 379,
+          og: 499,
+          image: "🔮",
+          cat: "Party Wear",
+          type: "Bodycon Dress",
+          tag: "bestseller",
+          disc: 64,
+          rating: 4.6,
+          reviews: "3.2k",
+          image:
+            "https://www.missmosa.in/cdn/shop/files/AACC769A-B881-47EB-AE9D-70C8967C1AC7.jpg?v=1749207221&width=500",
+        },
+        {
+          id: 24,
+          name: "Printed Kurti Set",
+          brand: "Aaranya Styles",
+          price: 299,
+          og: 399,
+          image: "🫧",
+          cat: "Dresses",
+          type: "Kurti & Palazzo",
+          tag: "new",
+          disc: 63,
+          rating: 4.4,
+          reviews: "1.4k",
+          image:
+            "https://wholetex.sgp1.cdn.digitaloceanspaces.com/full/dc-g65-masline-digital-printed-kurti-set-6788.jpg",
+        },
+        {
+          id: 25,
+          name: "Oversized Graphic T-Shirt",
+          brand: "Urban Gleam",
+          price: 899,
+          og: 2499,
+          image: "👑",
+          cat: "Western Fashion",
+          type: "Street Style",
+          tag: "bestseller",
+          disc: 64,
+          rating: 4.7,
+          reviews: "654",
+          image:
+            "https://img.kwcdn.com/product/open/893e96c27a4649f7852ab5d4857860e8-goods.jpeg",
+        },
+      ];
+
+      let cart = {},
+        wish = new Set(),
+        activeCat = "all",
+        activeFilter = "all";
+      function renderGrid(list, id) {
+        const g = document.getElementById(id);
+        g.innerHTML = "";
+        if (!list.length) {
+          g.innerHTML =
+            '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);font-style:italic">No products found for this filter</div>';
+          return;
+        }
+        list.forEach((p, index) => {
+          const inCart = cart[p.id] ? cart[p.id].qty : 0;
+          const liked = wish.has(p.id);
+
+          const d = document.createElement("div");
+
+          // Hide items after first 4 products
+          d.className = index >= 15 ? "pcard hidden-item" : "pcard";
+
+          d.innerHTML = `
+          <a href="product.html?id=${p.id}" class="pcard-link">
+    <div class="pimg">
+      <img src="${p.image}" alt="${p.name}">
+      
+      <span class="pbadge ${p.type === "gold" ? "gold-badge" : ""}">
+        ${p.disc}% OFF
+      </span>
+
+      <button class="pwish ${liked ? "on" : ""}" onclick="event.stopPropagation(); event.preventDefault(); toggleWish(${p.id},this)">
+      <svg class="heart-icon" viewBox="0 0 24 24">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+    </button>
+    </div>
+
+    <div class="pinfo">
+      <div class="pname">${p.name}</div>
+      <div class="pbrand">${p.brand}</div>
+
+      <div class="prow">
+        <span class="pprice">₹${p.price}</span>
+        <span class="pog">₹${p.og}</span>
+        <span class="pdisc">(${p.disc}% off)</span>
+      </div>
+
+      <div class="prat">
+        <span class="pstars">
+          ⭐⭐⭐⭐${p.rating >= 4.5 ? "⭐" : ""}
+        </span>
+        ${p.rating} (${p.reviews})
+      </div>
+
+      <button class="padd ${inCart > 0 ? "done" : ""}" 
+        onclick="event.stopPropagation(); event.preventDefault(); addCart(${p.id},
+        '${p.name.replace(/'/g, "\\'")}',
+        ${p.price},
+        '${p.image}',
+        this)">
+        
+        ${inCart > 0 ? "✓ Added (" + inCart + ")" : "Add to Cart"}
+      </button>
+    </div>
+  `;
+
+          g.appendChild(d);
+        });
+
+        const seeAllBtn = document.getElementById("seeAllBtn");
+        if (seeAllBtn) {
+          if (list.length > 15) {
+            seeAllBtn.style.display = "block";
+            seeAllBtn.onclick = function () {
+              document
+                .querySelectorAll(".hidden-item")
+                .forEach((item) => (item.style.display = "block"));
+              this.style.display = "none";
+            };
+          } else {
+            seeAllBtn.style.display = "none";
+          }
+        }
+      }
+
+      const sortSelect = document.getElementById("sortOption");
+
+      sortSelect.addEventListener("change", function () {
+        let sortedProducts = [...products];
+
+        if (this.value === "highToLow") {
+          sortedProducts.sort((a, b) => b.price - a.price);
+        } else if (this.value === "lowToHigh") {
+          sortedProducts.sort((a, b) => a.price - b.price);
+        } else if (this.value === "discount") {
+          sortedProducts.sort((a, b) => b.disc - a.disc);
+        } else if (this.value === "rating") {
+          sortedProducts.sort((a, b) => b.rating - a.rating);
+        }
+
+        renderGrid(sortedProducts, "prodGrid");
+      });
+
+      function filterRender() {
+        let list = products.slice();
+        if (activeCat !== "all")
+          list = list.filter(
+            (p) => p.cat === activeCat || p.type === activeCat,
+          );
+        if (activeFilter === "under199")
+          list = list.filter((p) => p.price < 200);
+        else if (activeFilter === "under499")
+          list = list.filter((p) => p.price < 500);
+        else if (activeFilter === "bridal")
+          list = list.filter((p) => p.type === "bridal");
+        else if (activeFilter === "bestseller")
+          list = list.filter((p) => p.tag === "bestseller");
+        else if (
+          ["gold", "silver", "kundan", "oxidised"].includes(activeFilter)
+        )
+          list = list.filter((p) => p.type === activeFilter);
+        renderGrid(list, "prodGrid");
+      }
+
+      function setcat(cat, el) {
+        window.location.href = cat + ".html";
+        activeCat = cat;
+        document
+          .querySelectorAll(".citem")
+          .forEach((e) => e.classList.remove("active"));
+        el.classList.add("active");
+        filterRender();
+      }
+      function setcatname(cat) {
+        activeCat = cat;
+        document
+          .querySelectorAll(".citem")
+          .forEach((e) => e.classList.remove("active"));
+        filterRender();
+        document
+          .getElementById("prodGrid")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      function setf(el, f) {
+        activeFilter = f;
+        document
+          .querySelectorAll(".fpill")
+          .forEach((p) => p.classList.remove("active"));
+        el.classList.add("active");
+        filterRender();
+      }
+
+      function addCart(id, name, price, image, btn) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (!cart[id]) cart[id] = { id, name, price, image, qty: 0 };
+        cart[id].qty++;
+        btn.textContent = "✓ Added (" + cart[id].qty + ")";
+        btn.classList.add("done");
+        updateBadge();
+        renderCart();
+        toast("Added to cart! 💎");
+      }
+
+      function toggleWish(id, btn) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (wish.has(id)) {
+          wish.delete(id);
+
+          btn.classList.remove("on");
+
+          toast("Removed from wishlist");
+        } else {
+          wish.add(id);
+
+          btn.classList.add("on");
+
+          toast("Saved to wishlist ❤️");
+        }
+
+        renderWishlist();
+      }
+
+      function toggleWishPanel() {
+        document.getElementById("wpan").classList.toggle("open");
+
+        document.getElementById("wov").classList.toggle("open");
+      }
+
+      function renderWishlist() {
+        const body = document.getElementById("wishBody");
+
+        const count = document.getElementById("wcount");
+
+        const items = products.filter((p) => wish.has(p.id));
+
+        count.textContent = items.length;
+
+        if (!items.length) {
+          body.innerHTML = `
+      <div class="ce">
+        <div class="cei">💎</div>
+
+        <p style="font-weight:700">
+          Your wishlist is empty
+        </p>
+
+        <p style="
+          font-size:12px;
+          margin-top:4px;
+          color:#8b6b72;
+        ">
+          Save your favourite jewellery ❤️
+        </p>
+      </div>
+    `;
+
+          return;
+        }
+
+        body.innerHTML = items
+          .map(
+            (p) => `
+
+    <div class="wish-item">
+
+      <div class="wish-img">
+        <img src="${p.image}" alt="${p.name}">
+      </div>
+
+      <div class="wish-info">
+
+        <div class="wish-name">
+          ${p.name}
+        </div>
+
+        <div class="wish-brand">
+          ${p.brand}
+        </div>
+
+        <div class="wish-price">
+          ₹${p.price}
+        </div>
+
+        <div class="wish-actions">
+
+          <button
+            class="wish-btn wish-cart"
+            onclick="
+              addCart(
+                ${p.id},
+                '${p.name.replace(/'/g, "\\'")}',
+                ${p.price},
+                '${p.image}',
+                this
+              )
+            "
+          >
+            Add to Cart
+          </button>
+
+          <button
+            class="wish-btn wish-remove"
+            onclick="removeWish(${p.id})"
+          >
+            Remove
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `,
+          )
+          .join("");
+      }
+
+      function removeWish(id) {
+        wish.delete(id);
+
+        renderWishlist();
+
+        filterRender();
+
+        toast("Removed from wishlist");
+      }
+
+      function updateBadge() {
+        const t = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+        document.getElementById("cc").textContent = t;
+      }
+
+      function renderCart() {
+        const items = Object.values(cart);
+        const b = document.getElementById("cbody"),
+          f = document.getElementById("cft");
+        if (!items.length) {
+          b.innerHTML =
+            '<div class="ce"><div class="cei">💎</div><p style="font-weight:700">Your cart is empty</p><p style="font-size:12px;margin-top:4px;color:#8B6B72">Add some beautiful jewellery!</p></div>';
+          f.style.display = "none";
+          return;
+        }
+        f.style.display = "block";
+        b.innerHTML = items
+          .map(
+            (i) =>
+              `<div class="citem"><div class="cimg"><img src="${i.image}" alt="${i.name}"></div><div class="cif"><div class="cin">${i.name}</div><div class="cip">₹${i.price * i.qty}</div><div class="ciq"><button class="qb" onclick="chqty(${i.id},-1)">−</button><span class="qn">${i.qty}</span><button class="qb" onclick="chqty(${i.id},1)">+</button></div></div><button class="cir" onclick="rmCart(${i.id})">🗑️</button></div>`,
+          )
+          .join("");
+        const tot = items.reduce((s, i) => s + i.price * i.qty, 0);
+        document.getElementById("ctotal").textContent = "₹" + tot;
+      }
+
+      function chqty(id, d) {
+        if (!cart[id]) return;
+
+        cart[id].qty = Math.max(0, cart[id].qty + d);
+
+        // DO NOT DELETE PRODUCT
+        // quantity can stay at 0
+
+        updateBadge();
+        renderCart();
+        filterRender();
+        renderGrid(newProducts, "newGrid");
+      }
+      function rmCart(id) {
+        delete cart[id];
+        updateBadge();
+        renderCart();
+        filterRender();
+        renderGrid(newProducts, "newGrid");
+      }
+      function toggleCart() {
+        document.getElementById("cpan").classList.toggle("open");
+        document.getElementById("cov").classList.toggle("open");
+      }
+      function scrollProd() {
+        document
+          .getElementById("prodGrid")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+      function toast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 2200);
+      }
+
+      document.getElementById("srch").addEventListener("input", (e) => {
+        const q = e.target.value.toLowerCase();
+        if (!q) {
+          filterRender();
+          return;
+        }
+        renderGrid(
+          products.filter(
+            (p) =>
+              p.name.toLowerCase().includes(q) ||
+              p.brand.toLowerCase().includes(q) ||
+              p.type.includes(q) ||
+              p.cat.includes(q),
+          ),
+          "prodGrid",
+        );
+      });
+
+      function tick() {
+        let h = parseInt(document.getElementById("th").textContent);
+        let m = parseInt(document.getElementById("tm").textContent);
+        let s = parseInt(document.getElementById("ts").textContent);
+        s--;
+        if (s < 0) {
+          s = 59;
+          m--;
+        }
+        if (m < 0) {
+          m = 59;
+          h--;
+        }
+        if (h < 0) {
+          h = 3;
+          m = 47;
+          s = 22;
+        }
+        document.getElementById("th").textContent = String(h).padStart(2, "0");
+        document.getElementById("tm").textContent = String(m).padStart(2, "0");
+        document.getElementById("ts").textContent = String(s).padStart(2, "0");
+      }
+      setInterval(tick, 1000);
+
+      filterRender();
+      renderGrid(newProducts, "newGrid");
+      renderWishlist();
+    </script>
+  </body>
+</html>
